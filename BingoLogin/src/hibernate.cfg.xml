@@ -4,8 +4,17 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
  
 <hibernate-configuration>
-    <session-factory>         
- 		<mapping class="com.mdv.bingo.model.User"/>
- 		<mapping class="com.mdv.bingo.model.UserDetail"/>
+    <session-factory>  
+    
+    	<property name="hbm2ddl.auto">update</property>
+    	<!-- <property name="hibernate.show_sql">true</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/bingo</property>
+        <property name="connection.username">mdv</property>
+        <property name="connection.password">Mdvs0lution</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property> -->
+           
+ 		<!-- <mapping class="com.mdv.bingo.model.User"/>
+ 		<mapping class="com.mdv.bingo.model.UserDetail"/> -->
     </session-factory>
 </hibernate-configuration>

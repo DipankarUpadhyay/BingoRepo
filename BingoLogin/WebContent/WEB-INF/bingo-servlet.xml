@@ -47,28 +47,14 @@
 		<property name="password" value="Mdvs0lution" />
 	</bean>
       
-	<!--bean id="mysessionFactory" class="org.springframework.orm.hibernate3.AnnotationSessionFactoryBean ">  
-   		<property name="dataSource"><ref bean="dataSource" /></property>
-   		<property name="mappingResources">  
-	    	<list>
-	    		<value>employee.hbm.xml</value>
-	    	</list>  
-    	</property>
-    	 <property name="configurationClass">
-            <value>org.hibernate.cfg.AnnotationConfiguration</value>
-        </property>         
-    	<property name="hibernateProperties">  
-     		<props>  
-      			<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>  
-  		    </props>  
-    	</property>  
-	</bean-->
 	
+	<!-- bean id="mysessionFactory" class="org.springframework.orm.hibernate3.AnnotationSessionFactoryBean "> -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.show_sql">true</prop>
+				<!-- <prop key="hibernate.show_sql">true</prop> -->
+				<prop key="hibernate.format_sql">true</prop>
 	            <prop key="debug">true</prop>
 	            <prop key="hbm2ddl.auto">create</prop>
 	            <prop key="connection.pool_size">1</prop>
@@ -78,24 +64,15 @@
 		<property name="configLocation">
             <value>classpath:hibernate.cfg.xml</value>
         </property>
-		 <!-- <property name="annotatedClasses">
+		<property name="annotatedClasses">
             <list>
                 <value>com.mdv.bingo.model.User</value>
+                <value>com.mdv.bingo.model.UserDetail</value>
             </list>
-        </property> -->
+        </property>
 	</bean>  
 
-    <bean id="userDAO" class="com.mdv.bingo.dao.UserDao"></bean>
-    	<!-- <property name="sessionFactory" ref="sessionFactory" /> -->
-    
-    
-	<!--tx:advice id="txAdvice" transaction-manager="transactionManager">
-    <tx:attributes>
-        <tx:method name="get*" read-only="true" propagation="REQUIRED"/>
-        <tx:method name="*" propagation="REQUIRED"/>
-    </tx:attributes>
-    </tx:advice-->
-    <!--tx:annotation-driven /-->
+    <bean id="userDAO" class="com.mdv.bingo.dao.UserDao"></bean> 
     
     <tx:annotation-driven transaction-manager="transactionManager"/> 
      <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
